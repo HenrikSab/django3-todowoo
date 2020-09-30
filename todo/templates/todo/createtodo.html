@@ -4,15 +4,18 @@
 
 {% block content %}
 
-<h1>sign up</h1>
+
+<h1>Create</h1>
 
 <h2>{{ fejlmeddelelse }}</h2>
 
 <form method="post">
 {% csrf_token %}
 {{ form.as_p}}
-<button type="submit">Klik her for at oprette</button>
+<button type="submit">Create</button>
 </form>
+
+
 
 
 {% endblock %}

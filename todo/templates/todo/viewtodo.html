@@ -1,0 +1,54 @@
+{% extends 'todo/base.html' %}
+
+
+{% block content %}
+
+{{ fejlmeddelelse }}
+
+{% if todo.datecompleted is None %}
+
+<h1>Viewtodo</h1>
+
+{% else %}
+<h1>Denne er afsluttet</h1>
+
+<b>Oprettet: {{ todo.created }}<br>
+<b>Afsluttet den:{{ todo.datecompleted }}</b><br>
+<br>
+
+
+<form method="POST" action="{% url 'copytodo' todo.id %}">
+{% csrf_token %}
+<button type="submit">Kopier</button>
+
+
+{% endif %}<br>
+<h2>{{ todo.title }}</h2>
+
+
+<form method="POST">
+{% csrf_token %}
+{{form.as_p}}
+
+{% if todo.datecompleted is None %}
+<button type="submit">Gem</button>
+</form>
+
+
+<form method="POST" action="{% url 'completetodo' todo.id %}">
+{% csrf_token %}
+<button type="submit">Udført</button>
+</form>
+
+<form method="POST" action="{% url 'deletetodo' todo.id %}">
+{% csrf_token %}
+<button type="submit">Slet</button>
+</form>
+
+
+</form>
+
+
+{% endif %}
+
+{% endblock %}

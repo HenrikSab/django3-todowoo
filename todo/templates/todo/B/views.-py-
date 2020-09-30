@@ -96,7 +96,7 @@ def donetodos(request):
     return render(request, 'todo/donetodos.html',{'todos':todo},)
 
 def copytodo(request, todo_pk):
-        todo = get_object_or_404(Todo, pk=todo_pk, user=request.user)
-        newtodo = Todo(title=todo.title, memo=todo.memo, user=request.user)
-        newtodo.save()
-        return redirect ('currenttodos')
+    if request.method == 'POST':
+        todo = Todo.objects.all()
+        todo.save()
+        return redirect('currenttodos')

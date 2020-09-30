@@ -4,17 +4,20 @@
 {% block content %}
 
 
-Henrik har lavet {{ antal_todos.count }} todo{{ antal_todos.count|pluralize }}
 
 
-<h1>You have the following todos:</h1>
+<h1>You have done the following todos:</h1>
 
 <ul>
-{% for todo in todos   %}
-<a href="{% url 'viewtodo' todo.id %} ">
+{% for todo in todos  %}
+
+<a href="{% url 'viewtodo' todo.id  %} ">
+
 <li>{% if todo.important %}<b>{% endif %}{{ todo.title }}{% if todo.important %}</b>{% endif %}<br>
+{{todo.datecompleted|date:'d, M, Y, H:i'}}
 </a>
 {% if todo.memo %} - {{ todo.memo }} {% endif %}<br>
+
 <br>
 </li>
 {% endfor %}

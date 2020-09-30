@@ -1,9 +1,17 @@
 
 {% if user.is_authenticated %}
 
-Logged is as {{ user.username }}
+You are log in as: {{ user.username }}
 
-<form action="{% url 'logoutuser' %}" method='POST'>
+<a href="{% url 'createtodo' %}">Create</a>
+<a href="{% url 'currenttodos' %}">Mine todos</a>
+<a href="{% url 'donetodos' %}">Afsluttede</a>
+<a href="{% url 'home' %}">Hjem</a>
+<a href=""></a>
+
+
+
+<form action="{% url 'logoutuser' %}" method='POST'><br>
   {% csrf_token %}
 <button type="submit">Logout</button>
 </form>
