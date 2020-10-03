@@ -14,13 +14,16 @@
 
 <br>
 <h2>{{ todo.title }}</h2>
-{% if todo.datecompleted is None %}
+
 <form method="POST">
 {% csrf_token %}
 {{form.as_p}}
-<button type="submit">Gem</button>
+
+{% if todo.datecompleted is None %}
 </form>
 
+
+<button type="submit">Gem</button>
 
 <br>
 <br>
@@ -35,9 +38,8 @@
 </form>
 
 {% else %}
+
 <form method="POST" action="{% url 'copytodo' todo.id %}">
-  {% csrf_token %}
-  {{form.as_p}}
 <button type="submit">Kopier</button>
 </form>
 
